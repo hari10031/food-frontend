@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { useSocket } from '../context/SocketContext';
 import { IoSend, IoClose, IoChatbubbleEllipses } from 'react-icons/io5';
+import { serverUrl } from '../App';
 
 const ChatWindow = ({ orderId, shopOrderId, onClose, recipientName }) => {
     const [chat, setChat] = useState(null);
@@ -30,7 +31,7 @@ const ChatWindow = ({ orderId, shopOrderId, onClose, recipientName }) => {
                 setLoading(true);
                 setError(null);
                 const response = await axios.get(
-                    `http://localhost:5000/api/chat/order/${orderId}/${shopOrderId}`,
+                    `${serverUrl}api/chat/order/${orderId}/${shopOrderId}`,
                     { withCredentials: true }
                 );
                 if (response.data.success) {
@@ -106,7 +107,7 @@ const ChatWindow = ({ orderId, shopOrderId, onClose, recipientName }) => {
             if (chat && messages.length > 0) {
                 try {
                     await axios.put(
-                        `http://localhost:5000/api/chat/${chat._id}/read`,
+                        `${serverUrl}api/chat/${chat._id}/read`,
                         {},
                         { withCredentials: true }
                     );
@@ -139,7 +140,7 @@ const ChatWindow = ({ orderId, shopOrderId, onClose, recipientName }) => {
         try {
             setSending(true);
             const response = await axios.post(
-                `http://localhost:5000/api/chat/${chat._id}/message`,
+                `${serverUrl}api/chat/${chat._id}/message`,
                 { content: newMessage },
                 { withCredentials: true }
             );
