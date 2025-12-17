@@ -27,7 +27,7 @@ import MyTickets from './pages/MyTickets'
 import OwnerTickets from './pages/OwnerTickets'
 import UserProfile from './pages/UserProfile'
 import OwnerCoupons from './pages/OwnerCoupons'
-export const serverUrl = 'http://localhost:5000/'
+export const serverUrl = 'https://food-backend-lram.onrender.com/'
 const App = () => {
   useGetCurrentUser();
   useUpdateLocation();
